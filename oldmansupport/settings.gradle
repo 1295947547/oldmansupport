@@ -1,0 +1,2 @@
+include ':app', 'senior'
+rootProject.name='old man support'
