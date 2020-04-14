@@ -9,6 +9,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +17,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.oldmansupport.map.MapActivity;
+import com.example.oldmansupport.phone.CallActivity;
 import com.example.oldmansupport.sms.SMSListShowActivity;
 import com.example.oldmansupport.weather.weather_main;
 
@@ -35,10 +38,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button btn_caculator = (Button) findViewById(R.id.btn_caculator);
         Button btn_weather = (Button) findViewById((R.id.btn_weather));
         Button btn_sms = (Button) findViewById((R.id.btn_sms));
+        Button btn_help=findViewById(R.id.btn_help);
+        Button btn_phone=findViewById(R.id.btn_phone);
+        Button btn_position=findViewById(R.id.btn_position);
         btn_caculator.setOnClickListener(this);
         btn_calendar.setOnClickListener(this);
         btn_sms.setOnClickListener(this);
         btn_weather.setOnClickListener(this);
+        btn_help.setOnClickListener(this);
+        btn_phone.setOnClickListener(this);
+        btn_position.setOnClickListener(this);
     }
 
         @Override
@@ -67,6 +76,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Intent intent4=new Intent(this, SMSListShowActivity.class);
                         startActivity(intent4);
                     }
+                    break;
+                case R.id.btn_help:
+                    Intent intenyhelp = new Intent();
+                    intenyhelp.setAction(Intent.ACTION_CALL);
+                    intenyhelp.setData(Uri.parse("tel:"+110));
+                    startActivity(intenyhelp);
+                    break;
+                case R.id.btn_phone:
+                    Intent intentphone=new Intent(MainActivity.this, CallActivity.class);
+                    startActivity(intentphone);
+                    break;
+                case R.id.btn_position:
+                    Intent intentposition=new Intent(MainActivity.this, MapActivity.class);
+                    startActivity(intentposition);
                     break;
             }
         }
