@@ -1,7 +1,5 @@
 package com.example.oldmansupport.sms;
 
-
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
