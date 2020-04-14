@@ -1,39 +1,87 @@
 package com.example.oldmansupport;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.oldmansupport.sms.SMSListShowActivity;
+import com.example.oldmansupport.weather.weather_main;
 
 import java.time.Instant;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+
+
+    public static final int REQ_CODE_CONTACT = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TextView hello = findViewById(R.id.hello);
-        hello.setText("老年人助手");
-        hello.setTextColor(Color.RED);
-        hello.setTextSize(30);
-        Button btn1 = (Button) findViewById(R.id.btnOne);
-        Button btn2 = (Button) findViewById(R.id.btnTwo);
-        btn1.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,ScheduleActivity.class);
-                startActivity(intent);
-            }
-        });
-        btn2.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,Calculator.class);
-                startActivity(intent);
-            }
-        });
+
+        Button btn_calendar = (Button) findViewById(R.id.btn_calendar);
+        Button btn_caculator = (Button) findViewById(R.id.btn_caculator);
+        Button btn_weather = (Button) findViewById((R.id.btn_weather));
+        Button btn_sms = (Button) findViewById((R.id.btn_sms));
+        btn_caculator.setOnClickListener(this);
+        btn_calendar.setOnClickListener(this);
+        btn_sms.setOnClickListener(this);
+        btn_weather.setOnClickListener(this);
     }
-}
+
+        @Override
+        public void onClick(View v){
+            switch (v.getId()){
+                case R.id.btn_calendar:
+                    Intent intent1=new Intent(MainActivity.this,ScheduleActivity.class);
+                    startActivity(intent1);
+                    break;
+                case R.id.btn_caculator:
+                    Intent intent2=new Intent(MainActivity.this,Calculator.class);
+                    startActivity(intent2);
+                    break;
+                case R.id.btn_weather:
+                    Intent intent3=new Intent(this, weather_main.class);
+                    startActivity(intent3);
+                    break;
+                case R.id.btn_sms:
+                    Log.i("test","ok");
+                    if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.
+                            permission.READ_SMS)!= PackageManager.PERMISSION_GRANTED){
+                    ActivityCompat.requestPermissions(MainActivity.this,
+                            new String[]{Manifest.permission.READ_SMS,Manifest.permission.RECEIVE_SMS,Manifest.permission.SEND_SMS},1);
+                    }
+                    else{
+                        Intent intent4=new Intent(this, SMSListShowActivity.class);
+                        startActivity(intent4);
+                    }
+                    break;
+            }
+        }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,String[] permissions, int[] grantResults) {
+        //判断用户是否，同意 获取短信授权
+        if (requestCode == REQ_CODE_CONTACT && grantResults.length > 0
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            //获取到读取短信权限
+            Intent intent=new Intent(MainActivity.this,SMSListShowActivity.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "未获取到短信权限", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    }
