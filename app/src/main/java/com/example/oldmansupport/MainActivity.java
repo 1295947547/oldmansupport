@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity{
         bt_sms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(android.view.View v) {
-                Intent intent1=new Intent(MainActivity.this, SMSContentActivity.class);
+                Intent intent1=new Intent(MainActivity.this, SMSListShowActivity.class);
                 startActivity(intent1);
             }
         });
