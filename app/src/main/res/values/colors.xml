@@ -2,8 +2,34 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
+    <color name="LimeGreen">#32CD32</color>
+    <color name="SpringGreen">#3CB371</color>
+    <color name="greenyellow">#adff2f</color>
+    <color name="yellowgreen">#9acd32</color>
     <color name="colorAccent">#D81B60</color>
-
+    <color name="DarkOrchid">#9932CC</color>
+    <color name="RoyalBlue">#4169E1</color>
+    <color name="DoderBlue">#1E90FF</color>
+    <color name="powderblue">#afeeee</color>
+    <color name="turquoise">#40e0d0</color>
+    <color name="DarkKhaki">#BDB76B</color>
+    <color name="Gold">#FFD700</color>
+    <color name="Beige">#F5F5DC</color>
+    <color name="LightGoldenrodYellow">#FAFAD2</color>
+    <color name="DarkOrange">#FF8C00</color>
+    <color name="LightCoral">#F08080</color>
+    <color name="orangered">#ff4500</color>
+    <color name="crimson">#dc143c</color>
+    <color name="deeppink">#ff1493</color>
+    <color name="fuchsia">#ff00ff</color>
+    <color name="palevioletred">#db7093</color>
+    <color name="plum">#dda0dd</color>
+    <color name="IndianRed">#CD5C5C</color>
+    <color name="DarkRed">#8B0000</color>
+    <color name="orchid">#da70d6</color>
+    <color name="LightSlateGray">#778899</color>
+    <color name="DimGray">#696969</color>
+    <color name="NavajoWhite">#FFDEAD</color>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
 </resources>
