@@ -1,0 +1,7 @@
+# oldmansupport
+给老年人使用的APP
+
+20200505添加文件注意事项
+想法，在activity_main中加入viewpager2和放置底部常驻应用的LinearLayout，并在MainActivy中实现，底部常驻功能的按钮可以直接MainActivity中添加代码，实现活动跳转
+
+但是可滑动页面上的功能按钮，必须添加到对应的fragmen t中
