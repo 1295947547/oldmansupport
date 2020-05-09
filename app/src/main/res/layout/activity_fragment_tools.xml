@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -16,6 +18,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_margin="3dp"
+            android:drawableTop="@drawable/calculator"
             android:background="@drawable/bt_calculator_shape"
             android:text="计算器"/>
 
@@ -25,6 +28,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_margin="3dp"
+            android:drawableTop="@drawable/memorandum"
             android:background="@drawable/bt_memorandum_shape"
             android:text="备忘录"/>
 
@@ -42,6 +46,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_margin="3dp"
+            android:drawableTop="@drawable/flashlight"
             android:background="@drawable/bt_flashlight_shape"
             android:text="手电筒"/>
 
@@ -51,6 +56,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_margin="3dp"
+            android:drawableTop="@drawable/gps"
             android:background="@drawable/bt_gps_shape"
             android:text="地图"/>
 
@@ -66,6 +72,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_margin="3dp"
+            android:drawableTop="@drawable/trashcleanup"
             android:background="@drawable/bt_trash_cleanup_shape"
             android:text="垃圾清理"/>
 
@@ -75,6 +82,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_margin="3dp"
+            android:drawableTop="@drawable/music"
             android:background="@drawable/bt_music_shape"
             android:text="音乐"/>
 

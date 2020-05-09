@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/llayout_fragment_maninfo"
     android:layout_width="match_parent"
     android:orientation="vertical"
@@ -30,23 +32,25 @@
         android:layout_weight="3"
         android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/bt_top_health_reminder"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:layout_margin="3dp"
-        android:background="@drawable/bt_health_reminder_shape"
-        android:text="健康提醒"/>
+        <Button
+            android:id="@+id/bt_top_health_reminder"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="3dp"
+            android:drawableTop="@drawable/health"
+            android:background="@drawable/bt_health_reminder_shape"
+            android:text="健康提醒"/>
 
-    <Button
-        android:id="@+id/bt_top_emergency_call"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:layout_margin="3dp"
-        android:background="@drawable/bt_emergency_call_shape"
-        android:text="紧急联系"/>
+        <Button
+            android:id="@+id/bt_top_emergency_call"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="3dp"
+            android:drawableTop="@drawable/emergency"
+            android:background="@drawable/bt_emergency_call_shape"
+            android:text="紧急联系"/>
 
 
     </LinearLayout>
@@ -62,6 +66,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_margin="3dp"
+            android:drawableTop="@drawable/oneclick"
             android:background="@drawable/bt_click_position_shape"
             android:text="一键定位"/>
 
@@ -71,6 +76,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_margin="3dp"
+            android:drawableTop="@drawable/fall"
             android:background="@drawable/bt_fall_detection_shape"
             android:text="摔倒检测"/>
 

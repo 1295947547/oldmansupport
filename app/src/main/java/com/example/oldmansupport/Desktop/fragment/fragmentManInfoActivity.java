@@ -1,9 +1,12 @@
 package com.example.oldmansupport.Desktop.fragment;
 
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
@@ -36,6 +39,38 @@ public class fragmentManInfoActivity extends Fragment {
 //        params.height=getActivity().getWindowManager().getDefaultDisplay().getHeight();
 //        View.setLayoutParams(params);
 //        FragmentTransaction transaction=fragmentManager.beginTransaction();
+
+
+
+        Button bt_health=(Button)View.findViewById(R.id.bt_top_health_reminder);
+        Drawable da_health=getResources().getDrawable(R.drawable.health);
+        da_health.setBounds(0,60,300,300);
+        bt_health.setTextColor(Color.parseColor("#FFFFFF"));
+        bt_health.setTextSize(25);
+        bt_health.setCompoundDrawables(null,da_health,null,null);
+
+        //修改图标的大小
+        Button bt_emergency=(Button)View.findViewById(R.id.bt_top_emergency_call);
+        Drawable da_emergencyt=getResources().getDrawable(R.drawable.emergency);
+        da_emergencyt.setBounds(0,40,280,300);
+        bt_emergency.setTextColor(Color.parseColor("#FFFFFF"));
+        bt_emergency.setTextSize(25);
+        bt_emergency.setCompoundDrawables(null,da_emergencyt,null,null);
+
+        //修改图标的大小
+        Button bt_phonefinder=(Button)View.findViewById(R.id.bt_top_click_position);
+        Drawable da_phonefinder=getResources().getDrawable(R.drawable.oneclick);
+        da_phonefinder.setBounds(0,60,250,300);
+        bt_phonefinder.setTextColor(Color.parseColor("#FFFFFF"));
+        bt_phonefinder.setTextSize(25);
+        bt_phonefinder.setCompoundDrawables(null,da_phonefinder,null,null);
+        //修改图标的大小
+        Button bt_fall=(Button)View.findViewById(R.id.bt_top_fall_detection);
+        Drawable da_fall=getResources().getDrawable(R.drawable.fall);
+        da_fall.setBounds(0,60,280,300);
+        bt_fall.setTextColor(Color.parseColor("#FFFFFF"));
+        bt_fall.setTextSize(25);
+        bt_fall.setCompoundDrawables(null,da_fall,null,null);
 
 
 

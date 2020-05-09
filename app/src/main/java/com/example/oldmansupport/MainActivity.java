@@ -11,6 +11,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -51,7 +52,35 @@ public class MainActivity extends AppCompatActivity{
         mViewPager2 = findViewById(R.id.pager2);
         LinearLayout layoutDots = findViewById(R.id.llayout_dots);
 
+
+        //修改图标的大小
+        Button bt_linkman=(Button)findViewById(R.id.bt_top_linkman);
+        Drawable da_linkman=getResources().getDrawable(R.drawable.linkman);
+        da_linkman.setBounds(0,35,180,210);
+        bt_linkman.setTextColor(Color.parseColor("#FFFFFF"));
+        bt_linkman.setTextSize(16);
+        bt_linkman.setCompoundDrawables(null,da_linkman,null,null);
+
+        //修改图标的大小
+        Button bt_call=(Button)findViewById(R.id.bt_top_dial);
+        Drawable da_call=getResources().getDrawable(R.drawable.call);
+        da_call.setBounds(0,35,180,210);
+        bt_call.setTextColor(Color.parseColor("#FFFFFF"));
+        bt_call.setTextSize(16);
+        bt_call.setCompoundDrawables(null,da_call,null,null);
+
+        //修改图标的大小
         Button bt_sms=(Button)findViewById(R.id.bt_top_sms);
+        Drawable da_sms=getResources().getDrawable(R.drawable.sms);
+        da_sms.setBounds(0,35,200,210);
+        bt_sms.setTextColor(Color.parseColor("#FFFFFF"));
+        bt_sms.setTextSize(16);
+        bt_sms.setCompoundDrawables(null,da_sms,null,null);
+
+
+
+
+
         bt_sms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(android.view.View v) {
@@ -59,7 +88,6 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(intent1);
             }
         });
-
 
 
 

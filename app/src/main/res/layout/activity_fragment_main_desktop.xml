@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -32,6 +34,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_margin="3dp"
+            android:drawableTop="@drawable/calendar"
             android:background="@drawable/bt_calendar_shape"
             android:text="日历"/>
 
@@ -41,6 +44,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_margin="3dp"
+            android:drawableTop="@drawable/wechat"
             android:background="@drawable/bt_wechat_shape"
             android:text="微信"/>
 
@@ -58,15 +62,17 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_margin="3dp"
+            android:drawableTop="@drawable/camera"
             android:background="@drawable/bt_camera_shape"
             android:text="拍照"/>
 
         <Button
-            android:id="@+id/bt_top_fall_detection"
+            android:id="@+id/bt_top_gallery"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_margin="3dp"
+            android:drawableTop="@drawable/gallery"
             android:background="@drawable/bt_gallery_shape"
             android:text="相册"/>
 

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -15,6 +17,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_margin="3dp"
+            android:drawableTop="@drawable/flow"
             android:background="@drawable/bt_flow_monitor_shape"
             android:text="流量监控"/>
 
@@ -24,8 +27,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_margin="3dp"
+            android:drawableTop="@drawable/add"
             android:background="@drawable/bt_to_be_added_shape"
-            android:text="+"/>
+            />
 
     </LinearLayout>
     <LinearLayout
@@ -40,7 +44,7 @@
             android:layout_weight="1"
             android:layout_margin="3dp"
             android:background="@drawable/bt_to_be_added_shape"
-            android:text="+"/>
+            android:drawableTop="@drawable/add"/>
 
         <Button
             android:id="@+id/bt_top_tobeadded4"
@@ -49,7 +53,7 @@
             android:layout_weight="1"
             android:layout_margin="3dp"
             android:background="@drawable/bt_to_be_added_shape"
-            android:text="+"/>
+            android:drawableTop="@drawable/add"/>
 
     </LinearLayout>
 
@@ -65,7 +69,7 @@
             android:layout_weight="1"
             android:layout_margin="3dp"
             android:background="@drawable/bt_to_be_added_shape"
-            android:text="+"/>
+            android:drawableTop="@drawable/add"/>
 
         <Button
             android:id="@+id/bt_top_tobeadded6"
@@ -74,7 +78,7 @@
             android:layout_weight="1"
             android:layout_margin="3dp"
             android:background="@drawable/bt_to_be_added_shape"
-            android:text="+"/>
+            android:drawableTop="@drawable/add"/>
 
     </LinearLayout>
 
