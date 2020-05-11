@@ -7,17 +7,69 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3">
+        android:layout_weight="3"
+        android:layout_margin="3dp"
+        android:orientation="vertical"
+        android:background="@drawable/bt_maindesktop_topshow_shape">
 
-        <Button
-            android:id="@+id/bt_top_maindesktop_topshow"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/tv_timehms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="60dp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:text="时分秒"/>
+            <TextView
+                android:id="@+id/tv_timeymd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:textColor="#FFFFFF"
+                android:text="年月日"/>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llyt_weather_jump"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="3dp"
-            android:background="@drawable/bt_maindesktop_topshow_shape"
-            android:text="时间和天气信息"/>
+            android:layout_height="22dp"
+            android:layout_weight="1"
+            android:alpha="0.7"
+            android:gravity="center"
+            android:background="#000000"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_weatherinfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="天气"
+                android:layout_marginRight="30dp"
+                android:textColor="#FFFFFF"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/tv_weatherdegree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="温度"
+                android:textColor="#FFFFFF"
+                android:textSize="30dp" />
+
+
+        </LinearLayout>
 
 
     </LinearLayout>

@@ -64,6 +64,7 @@ public class fragmentManInfoActivity extends Fragment {
         bt_phonefinder.setTextColor(Color.parseColor("#FFFFFF"));
         bt_phonefinder.setTextSize(25);
         bt_phonefinder.setCompoundDrawables(null,da_phonefinder,null,null);
+
         //修改图标的大小
         Button bt_fall=(Button)View.findViewById(R.id.bt_top_fall_detection);
         Drawable da_fall=getResources().getDrawable(R.drawable.fall);
