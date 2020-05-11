@@ -1,6 +1,8 @@
 package com.example.oldmansupport.Desktop.fragment;
 
 
+import android.content.ComponentName;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -68,6 +70,14 @@ public class fragmentToolsActivity extends Fragment {
         bt_music.setTextSize(25);
         bt_music.setCompoundDrawables(null,da_music,null,null);
 
+
+        bt_music.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(android.view.View v) {
+
+                //TODO:实现跳转系统播放器，目前还没找到方法
+            }
+        });
 
 
 

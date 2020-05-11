@@ -1,11 +1,15 @@
 package com.example.oldmansupport.Desktop.fragment;
 
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -81,6 +85,49 @@ public class fragmentMainDesktopActivity extends Fragment {
             }
         });
 
+        bt_camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(android.view.View v) {
+                Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivity(intent);
+            }
+        });
+
+        bt_wechat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(android.view.View v) {
+                try {
+
+                    Intent intent = new Intent(Intent.ACTION_MAIN);
+
+                    ComponentName cmp = new ComponentName("com.tencent.mm","com.tencent.mm.ui.LauncherUI");
+
+                    intent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                    intent.setComponent(cmp);
+
+                    startActivity(intent);
+
+                } catch (ActivityNotFoundException e)   {
+
+                    Toast.makeText(getActivity(),"检测您的手机没有安装微信，请安装后重试",Toast.LENGTH_SHORT);
+
+                }
+
+            }
+        });
+
+        bt_gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(android.view.View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setType("image/*");
+                startActivity(intent);
+
+            }
+        });
 
         Calendar calendar = Calendar.getInstance();
         TextView tv_hms=(TextView)View.findViewById(R.id.tv_timehms);
@@ -173,17 +220,6 @@ public class fragmentMainDesktopActivity extends Fragment {
     }
 
 
-//    @Override
-//    public void onActivityCreated(Bundle savedInstanceState) {
-//        super.onActivityCreated(savedInstanceState);
-//        Button button = (Button) getActivity().findViewById(R.id.bt_top_camera);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-//            }
-//        });
-//
-//    }
+
 
 }

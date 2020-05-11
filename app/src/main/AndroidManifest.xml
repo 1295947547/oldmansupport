@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.WRITE_SMS" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+
     <application
         android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"

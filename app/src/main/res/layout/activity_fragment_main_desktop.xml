@@ -46,9 +46,9 @@
             android:layout_width="match_parent"
             android:layout_height="22dp"
             android:layout_weight="1"
-            android:alpha="0.7"
+            android:alpha="0.9"
             android:gravity="center"
-            android:background="#000000"
+            android:background="#696969"
             android:orientation="horizontal">
 
             <TextView
