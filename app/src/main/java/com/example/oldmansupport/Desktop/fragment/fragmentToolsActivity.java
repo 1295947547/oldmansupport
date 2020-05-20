@@ -14,6 +14,9 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.amap.api.navi.AmapNaviPage;
+import com.amap.api.navi.AmapNaviParams;
+import com.amap.api.navi.AmapNaviType;
 import com.example.oldmansupport.R;
 
 public class fragmentToolsActivity extends Fragment {
@@ -79,7 +82,19 @@ public class fragmentToolsActivity extends Fragment {
             }
         });
 
-
+        //地图导航与按钮绑定bt_top_gps
+        Button bt_top_gps=View.findViewById(R.id.bt_top_gps);
+        bt_top_gps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AmapNaviParams params = new AmapNaviParams(null, null,null, AmapNaviType.DRIVER);
+                params.setUseInnerVoice(true);
+                params.setMultipleRouteNaviMode(true);
+                params.setNeedDestroyDriveManagerInstanceWhenNaviExit(true);
+                //发起导航
+                AmapNaviPage.getInstance().showRouteActivity(getActivity(), params, null);
+            }
+        });
 
 
 

@@ -1,7 +1,9 @@
 package com.example.oldmansupport.Desktop.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,12 +16,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.oldmansupport.R;
+import com.example.oldmansupport.li.Map_getPosition;
+
+import static com.example.oldmansupport.MainActivity.location;
 
 public class fragmentManInfoActivity extends Fragment {
 
     LinearLayout linearLayout;
     FragmentManager fragmentManager;
-
 
 
     @Nullable
@@ -39,7 +43,6 @@ public class fragmentManInfoActivity extends Fragment {
 //        params.height=getActivity().getWindowManager().getDefaultDisplay().getHeight();
 //        View.setLayoutParams(params);
 //        FragmentTransaction transaction=fragmentManager.beginTransaction();
-
 
 
         Button bt_health=(Button)View.findViewById(R.id.bt_top_health_reminder);
@@ -73,8 +76,28 @@ public class fragmentManInfoActivity extends Fragment {
         bt_fall.setTextSize(25);
         bt_fall.setCompoundDrawables(null,da_fall,null,null);
 
+        //紧急联系功能与按钮绑定
+        Button bt_top_emergency_call=View.findViewById(R.id.bt_top_emergency_call);
+        bt_top_emergency_call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_CALL);
+                intent.setData(Uri.parse("tel:"+110));
+                startActivity(intent);
+            }
+        });
 
-
+        //定位功能与按钮绑定
+        Button bt_top_click_position=View.findViewById(R.id.bt_top_click_position);
+        bt_top_click_position.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), Map_getPosition.class);
+                intent.putExtra("location",location);
+                startActivity(intent);
+            }
+        });
 
         return View;
     }
@@ -86,4 +109,5 @@ public class fragmentManInfoActivity extends Fragment {
 //        layout.setMinimumHeight(720);
 //
 //    }
+
 }
