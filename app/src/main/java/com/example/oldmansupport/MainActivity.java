@@ -92,8 +92,15 @@ public class MainActivity extends AppCompatActivity{
         bt_sms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(android.view.View v) {
-                Intent intent1=new Intent(MainActivity.this, SMSListShowActivity.class);
-                startActivity(intent1);
+                if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.
+                        permission.READ_SMS)!= PackageManager.PERMISSION_GRANTED){
+                    ActivityCompat.requestPermissions(MainActivity.this,
+                            new String[]{Manifest.permission.READ_SMS,Manifest.permission.RECEIVE_SMS,Manifest.permission.SEND_SMS},1);
+                }
+                else {
+                    Intent intent2 = new Intent(MainActivity.this, SMSListShowActivity.class);
+                    startActivity(intent2);
+                }
             }
         });
 

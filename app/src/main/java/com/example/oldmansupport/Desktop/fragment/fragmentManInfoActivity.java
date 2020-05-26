@@ -31,7 +31,7 @@ public class fragmentManInfoActivity extends Fragment {
        linearLayout=View.findViewById(R.id.llayout_fragment_maninfo); //通过getActivity()获取activity_main.xml文件中id号为line1的LinearLayout布局
 
         linearLayout.setLayoutParams(new LinearLayout.LayoutParams(getActivity().getWindowManager().getDefaultDisplay().getWidth(),
-                1794));
+                getActivity().getWindowManager().getDefaultDisplay().getHeight()));
 //        LinearLayout.LayoutParams params=(LinearLayout.LayoutParams)View.getLayoutParams();
 //        int hei=getActivity().getWindowManager().getDefaultDisplay().getHeight();
 //        String height=String.valueOf(hei);

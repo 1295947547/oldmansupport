@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.oldmansupport.R;
+import com.example.oldmansupport.Tools.FlashLightActivity;
 
 public class fragmentToolsActivity extends Fragment {
 
@@ -71,6 +72,15 @@ public class fragmentToolsActivity extends Fragment {
         bt_music.setCompoundDrawables(null,da_music,null,null);
 
 
+        bt_flashlight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(android.view.View v) {
+                    Intent intent1=new Intent(getActivity(), FlashLightActivity.class);
+                    startActivity(intent1);
+
+            }
+        });
+
         bt_music.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(android.view.View v) {
@@ -78,6 +88,8 @@ public class fragmentToolsActivity extends Fragment {
                 //TODO:实现跳转系统播放器，目前还没找到方法
             }
         });
+
+
 
 
 

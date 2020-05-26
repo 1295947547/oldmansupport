@@ -64,6 +64,9 @@ public class fragmentExtraToolsActivity extends Fragment {
 
 
 
+      //  Bundle bundle=getArguments();
+
+
 
         return View;
     }

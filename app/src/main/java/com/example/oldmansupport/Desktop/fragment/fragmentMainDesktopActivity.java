@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,8 +31,13 @@ import com.example.oldmansupport.weather.util.Utility;
 import com.example.oldmansupport.weather.weather_main;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 public class fragmentMainDesktopActivity extends Fragment {
+
+    private TextToSpeech textToSpeech = null;
+
+    private String str_time_speech;
 
     @Nullable
     @Override
@@ -72,6 +78,9 @@ public class fragmentMainDesktopActivity extends Fragment {
         bt_gallery.setTextColor(Color.parseColor("#FFFFFF"));
         bt_gallery.setTextSize(25);
         bt_gallery.setCompoundDrawables(null,da_gallery,null,null);
+
+
+
 
 
 
@@ -173,26 +182,48 @@ public class fragmentMainDesktopActivity extends Fragment {
                 break;
 
         }
-        String hms=String.valueOf(hour)+":"+String.valueOf(minute);
+        String strHour;
+        String strMinute;
+        if(hour<=9){
+            strHour="0"+String.valueOf(hour);
+        }
+        else {
+            strHour=String.valueOf(hour);
+        }
+        if(minute<=9){
+            strMinute="0"+String.valueOf(minute);
+        }
+        else {
+            strMinute=String.valueOf(minute);
+        }
+        String hms=strHour+":"+strMinute;
         String ymd=strweek+"  "+String.valueOf(year)+"年"+String.valueOf(month)+"月"+String.valueOf(day)+"日";
 
         tv_hms.setText(hms);
         tv_ymd.setText(ymd);
 
+        str_time_speech="现在时间是"+hour+"点"+minute+"分";
 
-
-
-
-        LinearLayout llyt_weather_jump=(LinearLayout)View.findViewById(R.id.llyt_weather_jump);
-        llyt_weather_jump.setOnClickListener(new View.OnClickListener() {
+        LinearLayout llyt_time_speech=(LinearLayout)View.findViewById(R.id.llty_time_speech);
+        llyt_time_speech.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(android.view.View v) {
-                Intent intent1=new Intent();
-                intent1.setClass(getActivity(), weather_main.class);
-                startActivity(intent1);
 
+                //TODO:语音播报时间
             }
         });
+
+
+//        LinearLayout llyt_weather_jump=(LinearLayout)View.findViewById(R.id.llyt_weather_jump);
+//        llyt_weather_jump.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(android.view.View v) {
+//                Intent intent1=new Intent();
+//                intent1.setClass(getActivity(), weather_main.class);
+//                startActivity(intent1);
+//
+//            }
+//        });
 
 
 
@@ -218,6 +249,8 @@ public class fragmentMainDesktopActivity extends Fragment {
 
         return View;
     }
+
+
 
 
 
