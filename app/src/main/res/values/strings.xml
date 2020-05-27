@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">银发桌面</string>
+    <string name="textMobileString">请输入你要拨打的电话号码：</string>
+    <string name="edtMobileNumString">请输入号码</string>
+    <string name="btnCallString">拨打</string>
+    <string name="RecievePeople">收件人：</string>
+    <string name="RecievePeople2">收件人</string>
+    <string name="InsertMessage">请输入短信内容</string>
+    <string name="Send">发送</string>
+    <string name="ContactPeople">联系人：</string>
+    <string name="determine">确定(拨打)</string>
+    <string name="back">返回</string>
+    <string name="tip1">对不起,未能查找到手机号!</string>
+    <string name="contactName">姓名</string>
+    <string name="contactTel">电话</string>
+    <string name="InsertContactsName">请输入联系人姓名</string>
+    <string name="Add">添加</string>
+    <string name="notifyTitle">提示</string>
+    <string name="notifyMsg">当前应用缺少必要权限。\n\n请点击\"设置\"-\"权限\"-打开所需权限。</string>
+    <string name="setting">设置</string>
+    <string name="cancel">取消</string>
 </resources>

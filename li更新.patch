@@ -1,0 +1,524 @@
+Index: app/src/main/java/com/example/oldmansupport/Desktop/fragment/fragmentToolsActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/oldmansupport/Desktop/fragment/fragmentToolsActivity.java	(date 1589952872000)
++++ app/src/main/java/com/example/oldmansupport/Desktop/fragment/fragmentToolsActivity.java	(date 1589941831590)
+@@ -14,6 +14,9 @@
+ import androidx.annotation.Nullable;
+ import androidx.fragment.app.Fragment;
+ 
++import com.amap.api.navi.AmapNaviPage;
++import com.amap.api.navi.AmapNaviParams;
++import com.amap.api.navi.AmapNaviType;
+ import com.example.oldmansupport.R;
+ 
+ public class fragmentToolsActivity extends Fragment {
+@@ -79,7 +82,19 @@
+             }
+         });
+ 
+-
++        //地图导航与按钮绑定bt_top_gps
++        Button bt_top_gps=View.findViewById(R.id.bt_top_gps);
++        bt_top_gps.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                AmapNaviParams params = new AmapNaviParams(null, null,null, AmapNaviType.DRIVER);
++                params.setUseInnerVoice(true);
++                params.setMultipleRouteNaviMode(true);
++                params.setNeedDestroyDriveManagerInstanceWhenNaviExit(true);
++                //发起导航
++                AmapNaviPage.getInstance().showRouteActivity(getActivity(), params, null);
++            }
++        });
+ 
+ 
+ 
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(date 1589952872000)
++++ app/build.gradle	(date 1589907442963)
+@@ -17,6 +17,11 @@
+             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+         }
+     }
++    sourceSets {
++        main {
++            jniLibs.srcDirs = ['libs']
++        }
++    }
+ }
+ 
+ dependencies {
+@@ -34,4 +39,11 @@
+     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
++
++    //3D地图so及jar
++    compileOnly 'com.amap.api:3dmap:latest.integration'
++    //定位功能
++    compileOnly 'com.amap.api:location:latest.integration'
++    //搜索功能
++    compileOnly 'com.amap.api:search:latest.integration'
+ }
+Index: app/src/main/java/com/example/oldmansupport/Desktop/fragment/fragmentManInfoActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/oldmansupport/Desktop/fragment/fragmentManInfoActivity.java	(date 1589952872000)
++++ app/src/main/java/com/example/oldmansupport/Desktop/fragment/fragmentManInfoActivity.java	(date 1589950116979)
+@@ -1,7 +1,9 @@
+ package com.example.oldmansupport.Desktop.fragment;
+ 
++import android.content.Intent;
+ import android.graphics.Color;
+ import android.graphics.drawable.Drawable;
++import android.net.Uri;
+ import android.os.Bundle;
+ import android.view.LayoutInflater;
+ import android.view.View;
+@@ -14,6 +16,9 @@
+ import androidx.fragment.app.FragmentManager;
+ 
+ import com.example.oldmansupport.R;
++import com.example.oldmansupport.li.Map_getPosition;
++
++import static com.example.oldmansupport.MainActivity.location;
+ 
+ public class fragmentManInfoActivity extends Fragment {
+ 
+@@ -21,7 +26,6 @@
+     FragmentManager fragmentManager;
+ 
+ 
+-
+     @Nullable
+     @Override
+     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+@@ -41,7 +45,6 @@
+ //        FragmentTransaction transaction=fragmentManager.beginTransaction();
+ 
+ 
+-
+         Button bt_health=(Button)View.findViewById(R.id.bt_top_health_reminder);
+         Drawable da_health=getResources().getDrawable(R.drawable.health);
+         da_health.setBounds(0,60,300,300);
+@@ -73,8 +76,28 @@
+         bt_fall.setTextSize(25);
+         bt_fall.setCompoundDrawables(null,da_fall,null,null);
+ 
++        //紧急联系功能与按钮绑定
++        Button bt_top_emergency_call=View.findViewById(R.id.bt_top_emergency_call);
++        bt_top_emergency_call.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                Intent intent = new Intent();
++                intent.setAction(Intent.ACTION_CALL);
++                intent.setData(Uri.parse("tel:"+110));
++                startActivity(intent);
++            }
++        });
+ 
+-
++        //定位功能与按钮绑定
++        Button bt_top_click_position=View.findViewById(R.id.bt_top_click_position);
++        bt_top_click_position.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                Intent intent=new Intent(getActivity(), Map_getPosition.class);
++                intent.putExtra("location",location);
++                startActivity(intent);
++            }
++        });
+ 
+         return View;
+     }
+@@ -86,4 +109,5 @@
+ //        layout.setMinimumHeight(720);
+ //
+ //    }
++
+ }
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(date 1589952872000)
++++ app/src/main/res/values/strings.xml	(date 1589902357958)
+@@ -1,3 +1,22 @@
+ <resources>
+     <string name="app_name">银发桌面</string>
++    <string name="textMobileString">请输入你要拨打的电话号码：</string>
++    <string name="edtMobileNumString">请输入号码</string>
++    <string name="btnCallString">拨打</string>
++    <string name="RecievePeople">收件人：</string>
++    <string name="RecievePeople2">收件人</string>
++    <string name="InsertMessage">请输入短信内容</string>
++    <string name="Send">发送</string>
++    <string name="ContactPeople">联系人：</string>
++    <string name="determine">确定(拨打)</string>
++    <string name="back">返回</string>
++    <string name="tip1">对不起,未能查找到手机号!</string>
++    <string name="contactName">姓名</string>
++    <string name="contactTel">电话</string>
++    <string name="InsertContactsName">请输入联系人姓名</string>
++    <string name="Add">添加</string>
++    <string name="notifyTitle">提示</string>
++    <string name="notifyMsg">当前应用缺少必要权限。\n\n请点击\"设置\"-\"权限\"-打开所需权限。</string>
++    <string name="setting">设置</string>
++    <string name="cancel">取消</string>
+ </resources>
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/gradle.xml	(date 1589952872000)
++++ .idea/gradle.xml	(date 1589901031402)
+@@ -1,20 +1,20 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
++  <component name="GradleMigrationSettings" migrationVersion="1" />
+   <component name="GradleSettings">
+     <option name="linkedExternalProjectsSettings">
+       <GradleProjectSettings>
+-        <compositeConfiguration>
+-          <compositeBuild compositeDefinitionSource="SCRIPT" />
+-        </compositeConfiguration>
++        <option name="testRunner" value="PLATFORM" />
+         <option name="distributionType" value="DEFAULT_WRAPPED" />
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+         <option name="modules">
+           <set>
+             <option value="$PROJECT_DIR$" />
++            <option value="$PROJECT_DIR$/app" />
++            <option value="$PROJECT_DIR$/senior" />
+           </set>
+         </option>
+         <option name="resolveModulePerSourceSet" value="false" />
+-        <option name="testRunner" value="PLATFORM" />
+       </GradleProjectSettings>
+     </option>
+   </component>
+Index: app/src/main/java/com/example/oldmansupport/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/oldmansupport/MainActivity.java	(date 1589952872000)
++++ app/src/main/java/com/example/oldmansupport/MainActivity.java	(date 1589950555806)
+@@ -15,27 +15,25 @@
+ import android.net.Uri;
+ import android.os.Build;
+ import android.os.Bundle;
+-import android.util.Log;
+ import android.view.View;
+ import android.view.WindowManager;
+ import android.widget.Button;
+ import android.widget.ImageView;
+ import android.widget.LinearLayout;
+-import android.widget.TextView;
+ import android.widget.Toast;
+ 
+-//import com.example.oldmansupport.map.MapActivity;
+-//import com.example.oldmansupport.phone.CallActivity;
++import com.amap.api.location.AMapLocation;
++import com.amap.api.location.AMapLocationClient;
++import com.amap.api.location.AMapLocationClientOption;
++import com.amap.api.location.AMapLocationListener;
+ import com.example.oldmansupport.Desktop.DesktopSlideAdapter;
+ import com.example.oldmansupport.Desktop.fragment.fragmentExtraToolsActivity;
+ import com.example.oldmansupport.Desktop.fragment.fragmentMainDesktopActivity;
+ import com.example.oldmansupport.Desktop.fragment.fragmentManInfoActivity;
+ import com.example.oldmansupport.Desktop.fragment.fragmentToolsActivity;
+-import com.example.oldmansupport.sms.SMSContentActivity;
++import com.example.oldmansupport.li.CallActivity;
+ import com.example.oldmansupport.sms.SMSListShowActivity;
+-import com.example.oldmansupport.weather.weather_main;
+ 
+-import java.time.Instant;
+ import java.util.ArrayList;
+ import java.util.List;
+ 
+@@ -43,7 +41,15 @@
+     ImageView[] mImageViews;
+     List<Fragment> mFragments;
+     ViewPager2 mViewPager2;
++    public static String location;//定位得到的具体地址
++    public double lat;//定位得到的维度
++    public double lon;//定位得到的经度
+ 
++    //public Map<String, String> map = new HashMap<String,String>();
++    //声明AMapLocationClient类对象
++    AMapLocationClient mLocationClient = null;
++    //声明AMapLocationClientOption对象
++    public AMapLocationClientOption mLocationOption = null;
+ 
+     public static final int REQ_CODE_CONTACT = 1;
+ 
+@@ -51,6 +57,7 @@
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_main);
++        startLocaion();//开始定位
+         mViewPager2 = findViewById(R.id.pager2);
+         LinearLayout layoutDots = findViewById(R.id.llayout_dots);
+ 
+@@ -60,7 +67,6 @@
+         }
+ 
+ 
+-
+         //修改图标的大小
+         Button bt_linkman=(Button)findViewById(R.id.bt_top_linkman);
+         Drawable da_linkman=getResources().getDrawable(R.drawable.linkman);
+@@ -97,7 +103,27 @@
+             }
+         });
+ 
++        //联系人功能与按钮绑定
++        bt_linkman=findViewById(R.id.bt_top_linkman);
++        bt_linkman.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                Intent intent=new Intent(MainActivity.this, CallActivity.class);
++                startActivity(intent);
++            }
++        });
+ 
++        //拨号功能与按钮绑定
++        bt_call=findViewById(R.id.bt_top_dial);
++        bt_call.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                Intent intent = new Intent();
++                intent.setAction(Intent.ACTION_DIAL);
++                intent.setData(Uri.parse("tel:"));
++                startActivity(intent);
++            }
++        });
+ 
+         //region 设置ViewPager2和页面滑动时的小圆点动态
+         mFragments = new ArrayList<>();
+@@ -178,4 +204,56 @@
+         }
+     }
+ 
++    //程序启动则开始定位
++    public void startLocaion(){
++
++        mLocationClient = new AMapLocationClient(getApplicationContext());
++        mLocationClient.setLocationListener(mLocationListener);
++
++        mLocationOption = new AMapLocationClientOption();
++        //设置定位模式为AMapLocationMode.Hight_Accuracy，高精度模式。
++        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
++        //设置是否返回地址信息（默认返回地址信息）
++        mLocationOption.setNeedAddress(true);
++        //获取一次定位结果：
++        //该方法默认为false。
++        mLocationOption.setOnceLocation(true);
++        //设置是否允许模拟位置,默认为false，不允许模拟位置
++        mLocationOption.setMockEnable(false);
++
++        //给定位客户端对象设置定位参数
++        mLocationClient.setLocationOption(mLocationOption);
++        //启动定位
++        mLocationClient.startLocation();
++    }
++
++
++    //声明定位回调监听器
++    public AMapLocationListener mLocationListener = new AMapLocationListener() {
++        @Override
++        public void onLocationChanged(AMapLocation amapLocation) {
++            if (amapLocation !=null ) {
++                if (amapLocation.getErrorCode() == 0) {
++                    //定位成功回调信息，设置相关消息
++                    lat=amapLocation.getLatitude();
++                    lon=amapLocation.getLongitude();
++                    location=amapLocation.getAddress();
++//                    map.put("当前定位结果来源",String.valueOf(amapLocation.getLocationType()));//获取当前定位结果来源，如网络定位结果，详见定位类型表
++//                    map.put("纬度",String.valueOf(amapLocation.getLatitude()));//获取纬度
++//                    map.put("经度",String.valueOf(amapLocation.getLongitude()));//获取经度
++//                    map.put("精度信息",String.valueOf(amapLocation.getAccuracy()));//获取精度信息
++//                    map.put("地址",String.valueOf(amapLocation.getAddress()));//地址，如果option中设置isNeedAddress为false，则没有此结果，网络定位结果中会有地址信息，GPS定位不返回地址信息。
++//                    map.put("国家信息",String.valueOf(amapLocation.getCountry()));//国家信息
++//                    map.put("省信息",String.valueOf(amapLocation.getProvince()));//省信息
++//                    map.put("城市信息",String.valueOf(amapLocation.getCity()));//城市信息
++//                    map.put("城区信息",String.valueOf(amapLocation.getDistrict()));//城区信息
++//                    map.put("街道信息",String.valueOf(amapLocation.getStreet()));//街道信息
++//                    map.put("街道门牌号信息",String.valueOf(amapLocation.getStreetNum()));//街道门牌号信息
++//                    map.put("城市编码",String.valueOf(amapLocation.getCityCode()));//城市编码
++//                    map.put("地区编码",String.valueOf(amapLocation.getAdCode()));//地区编码
++//                    map.put("当前定位点的信息",String.valueOf(amapLocation.getAoiName()));//获取当前定位点的AOI信息
++                }
++            }
++        }
++    };
+ }
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(date 1589952872000)
++++ app/src/main/AndroidManifest.xml	(date 1589942252003)
+@@ -7,7 +7,29 @@
+     <uses-permission android:name="android.permission.SEND_SMS" />
+     <uses-permission android:name="android.permission.WRITE_SMS" />
+     <uses-permission android:name="android.permission.INTERNET" />
++    <uses-permission android:name="android.permission.CALL_PHONE" />
++    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
++    <uses-permission android:name="android.permission.READ_CONTACTS" />
++    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+ 
++    <!--用于访问网络，网络定位需要上网-->
++    <uses-permission android:name="android.permission.INTERNET" />
++    <!--写入扩展存储，向扩展卡写入数据，用于写入缓存定位数据-->
++    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
++    <!--用于进行网络定位-->
++    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
++    <!--获取运营商信息，用于支持提供运营商信息相关的接口-->
++    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
++    <!--用于访问GPS定位-->
++    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
++    <!--用于读取手机当前的状态-->
++    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
++    <!--用于访问wifi网络信息，wifi信息会用于进行网络定位-->
++    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
++    <!--这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
++    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
++    <!--这个权限用于允许程序在手机屏幕关闭后后台进程仍然运行-->
++    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+ 
+     <application
+         android:name="org.litepal.LitePalApplication"
+@@ -32,6 +54,19 @@
+         <activity android:name=".Calculator" />
+         <activity android:name=".ScheduleActivity" />
+         <activity android:name=".ScheduleDetailActivity" />
++        <activity android:name=".li.ContactInfo"/>
++        <activity android:name=".li.CallActivity"/>
++        <activity android:name=".li.CheckPermissionsActivity" />
++        <activity android:name=".li.Map_getPosition"/>
++
++        <!--导航组件Activity-->
++        <activity
++            android:name="com.amap.api.navi.AmapRouteActivity"
++            android:configChanges="orientation|keyboardHidden|screenSize"
++            android:theme="@android:style/Theme.NoTitleBar" />
++
++        <meta-data android:name="com.amap.api.v2.apikey" android:value="393ac3024f55693ab6b2c4d9454ae6ff">
++        </meta-data>
++        <service android:name="com.amap.api.location.APSService"></service>
+     </application>
+-
+ </manifest>
+\ No newline at end of file
+Index: app/src/main/res/values/styles.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/styles.xml	(date 1589952872000)
++++ app/src/main/res/values/styles.xml	(date 1589902409362)
+@@ -16,4 +16,40 @@
+         <item name="android:textSize">30sp</item>
+         <item name="android:background">@drawable/btn_nine_selector</item>
+     </style>
++    <style name="TextStyle1">
++        <item name="android:textSize">20sp</item>
++        <item name="android:textColor">#000000</item>
++        <item name="android:layout_width">wrap_content</item>
++        <item name="android:layout_height">wrap_content</item>
++    </style>
++    <style name="TextStyle2">
++        <item name="android:textSize">14sp</item>
++        <item name="android:textColor">#000000</item>
++        <item name="android:layout_width">wrap_content</item>
++        <item name="android:layout_height">wrap_content</item>
++    </style>
++    <style name="AddButton">
++        <item name="android:textSize">14sp</item>
++        <item name="android:textColor">#000000</item>
++        <item name="android:layout_width">wrap_content</item>
++        <item name="android:layout_height">wrap_content</item>
++        <item name="android:layout_gravity">right</item>
++        <item name="android:text">@string/Add</item>
++    </style>
++    <style name="GeneralStyle1">
++        <item name="android:layout_width">wrap_content</item>
++        <item name="android:layout_height">wrap_content</item>
++    </style>
++    <style name="GeneralStyle2">
++        <item name="android:layout_width">fill_parent</item>
++        <item name="android:layout_height">wrap_content</item>
++    </style>
++    <style name="DaoJianLinearLayoutStyle">
++        <item name="android:layout_height">wrap_content</item>
++        <item name="android:layout_width">match_parent</item>
++        <item name="android:layout_marginLeft">10dip</item>
++        <item name="android:layout_marginRight">10dip</item>
++        <item name="android:orientation">horizontal</item>
++        <item name="android:gravity">center_horizontal</item>
++    </style>
+ </resources>
+Index: gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>GBK
+===================================================================
+--- gradle/wrapper/gradle-wrapper.properties	(date 1589952872000)
++++ gradle/wrapper/gradle-wrapper.properties	(date 1589905811670)
+@@ -1,6 +1,6 @@
+-#Mon Apr 06 13:54:00 CST 2020
++#Wed May 20 00:30:11 GMT+08:00 2020
+ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-5.4.1-all.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-5.6.4-all.zip
+Index: gradle.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>GBK
+===================================================================
+--- gradle.properties	(date 1589952872000)
++++ gradle.properties	(date 1589937758321)
+@@ -17,4 +17,10 @@
+ android.useAndroidX=true
+ # Automatically convert third-party libraries to use AndroidX
+ android.enableJetifier=true
++android.injected.testOnly=false
++android.useDeprecatedNdk=true
++MYAPP_RELEASE_STORE_FILE=keystore.jks 
++MYAPP_RELEASE_KEY_ALIAS=keyl
++MYAPP_RELEASE_STORE_PASSWORD=910290
++MYAPP_RELEASE_KEY_PASSWORD=910290
+ 
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- build.gradle	(date 1589952872000)
++++ build.gradle	(date 1589905811662)
+@@ -7,7 +7,7 @@
+         
+     }
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:3.5.2'
++        classpath 'com.android.tools.build:gradle:3.6.3'
+ 
+         // NOTE: Do not place your application dependencies here; they belong
+         // in the individual module build.gradle files

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:id="@+id/top"
+        android:layout_width="fill_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        >
+        <AutoCompleteTextView android:id="@+id/edit"
+            android:layout_width="match_parent"
+            android:completionThreshold="1"
+            android:layout_height="70dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginTop="3dip"
+            android:hint="@string/InsertContactsName"
+            android:layout_weight="1"
+            />
+        <Button
+            android:id="@+id/AddContacts"
+            style="@style/TextStyle2"
+            android:layout_height="match_parent"
+            android:text="@string/Add"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        >
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:stretchColumns="2"
+            >
+            <TableRow android:gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/btn_add"
+                    android:layout_width="103dp"
+                    android:layout_weight="1"
+                    android:text="@string/determine"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
+                <Button
+                    android:id="@+id/btn_back"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:text="@string/back" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/empty"
+        android:text="@string/tip1"
+        android:layout_below="@id/top"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dip"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:layout_marginTop="10dip"
+        android:layout_marginRight="10dip"
+        android:gravity="center"
+        />
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/bottom"
+        android:layout_below="@id/top"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        android:cacheColorHint="#00000000"
+        android:drawSelectorOnTop="false"
+        android:nextFocusUp="@+id/edit" />
+</RelativeLayout>
