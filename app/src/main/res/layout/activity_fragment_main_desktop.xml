@@ -16,7 +16,7 @@
         android:background="@drawable/bt_maindesktop_topshow_shape">
 
         <LinearLayout
-            android:id="@+id/llty_time_speech"
+            android:id="@+id/llty_time"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="5"
@@ -26,7 +26,7 @@
                 android:id="@+id/tv_timehms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="60dp"
+                android:textSize="50dp"
                 android:layout_marginLeft="15dp"
                 android:textStyle="bold"
                 android:textColor="#FFFFFF"
@@ -35,7 +35,7 @@
                 android:id="@+id/tv_timeymd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="30dp"
+                android:textSize="25dp"
                 android:layout_marginLeft="15dp"
                 android:textColor="#FFFFFF"
                 android:text="年月日"/>

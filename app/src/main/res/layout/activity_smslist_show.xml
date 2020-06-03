@@ -5,13 +5,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".sms.SMSListShowActivity">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="75dp"
         android:gravity="center_vertical"
-        android:background="@color/colorPrimary">
+        android:background="@color/DoderBlue">
 
         <Button
             android:id="@+id/bt_back"
@@ -46,6 +47,7 @@
         android:id="@+id/bt_sent_SMS"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:textSize="30dp"
         android:layout_weight="1.5"
         android:text="新建短信"
         />

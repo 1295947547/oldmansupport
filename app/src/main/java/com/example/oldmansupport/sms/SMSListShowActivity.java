@@ -7,8 +7,10 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.view.View;
 import android.widget.Button;
@@ -42,6 +44,12 @@ public class SMSListShowActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.hide();
         }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        }
+
         //初始化
         initView();
 

@@ -5,15 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:clipToPadding="true"
+    android:clipChildren="false"
     tools:context=".sms.SMSSentActivity">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="75dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:background="@color/colorPrimary">
+        android:background="@color/DoderBlue">
 
         <Button
             android:id="@+id/bt_back"
@@ -60,6 +62,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.5"
+        android:textSize="30dp"
         android:text="发送"
         />
 

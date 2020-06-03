@@ -204,26 +204,19 @@ public class fragmentMainDesktopActivity extends Fragment {
 
         str_time_speech="现在时间是"+hour+"点"+minute+"分";
 
-        LinearLayout llyt_time_speech=(LinearLayout)View.findViewById(R.id.llty_time_speech);
-        llyt_time_speech.setOnClickListener(new View.OnClickListener() {
+
+
+
+        LinearLayout llyt_weather_jump=(LinearLayout)View.findViewById(R.id.llyt_weather_jump);
+        llyt_weather_jump.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(android.view.View v) {
+                Intent intent1=new Intent();
+                intent1.setClass(getActivity(), weather_main.class);
+                startActivity(intent1);
 
-                //TODO:语音播报时间
             }
         });
-
-
-//        LinearLayout llyt_weather_jump=(LinearLayout)View.findViewById(R.id.llyt_weather_jump);
-//        llyt_weather_jump.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(android.view.View v) {
-//                Intent intent1=new Intent();
-//                intent1.setClass(getActivity(), weather_main.class);
-//                startActivity(intent1);
-//
-//            }
-//        });
 
 
 
