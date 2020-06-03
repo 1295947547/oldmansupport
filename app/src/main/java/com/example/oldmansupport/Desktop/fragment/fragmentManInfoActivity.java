@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -119,6 +120,7 @@ public class fragmentManInfoActivity extends Fragment {
 //        layout.setMinimumHeight(720);
 //
 //    }
+
 
     //直接调用短信接口发短信
     public void sendSMS(String phoneNumber, String message, final Context context){
