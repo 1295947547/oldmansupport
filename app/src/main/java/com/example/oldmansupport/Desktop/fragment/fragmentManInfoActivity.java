@@ -6,34 +6,48 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import android.content.SharedPreferences;
 
 import com.example.oldmansupport.R;
 import com.example.oldmansupport.li.Map_getPosition;
+import com.example.oldmansupport.maninfo.LoginActivity;
 
 import java.util.List;
 
+import static android.content.Context.MODE_PRIVATE;
 import static com.example.oldmansupport.MainActivity.location;
 
 public class fragmentManInfoActivity extends Fragment {
 
     LinearLayout linearLayout;
     FragmentManager fragmentManager;
+    RelativeLayout rllt_maninfoshow;
+    SharedPreferences prefs;
+
+    TextView fragmaninfoname;
+    TextView fragmaninfotip;
+    ImageView imag_head;
 
 
     @Nullable
@@ -42,17 +56,26 @@ public class fragmentManInfoActivity extends Fragment {
         View View = inflater.inflate(R.layout.activity_fragment_man_info, container, false);
         //TextView txt_content = (TextView) View.findViewById(R.id.tvInfo4);
         //txt_content.setText("第一个Fragment");
-       linearLayout=View.findViewById(R.id.llayout_fragment_maninfo); //通过getActivity()获取activity_main.xml文件中id号为line1的LinearLayout布局
 
+       linearLayout=View.findViewById(R.id.llayout_fragment_maninfo); //通过getActivity()获取activity_main.xml文件中id号为line1的LinearLayout布局
         linearLayout.setLayoutParams(new LinearLayout.LayoutParams(getActivity().getWindowManager().getDefaultDisplay().getWidth(),
                 getActivity().getWindowManager().getDefaultDisplay().getHeight()));
-//        LinearLayout.LayoutParams params=(LinearLayout.LayoutParams)View.getLayoutParams();
-//        int hei=getActivity().getWindowManager().getDefaultDisplay().getHeight();
-//        String height=String.valueOf(hei);
-//        Log.i("test999",height);
-//        params.height=getActivity().getWindowManager().getDefaultDisplay().getHeight();
-//        View.setLayoutParams(params);
-//        FragmentTransaction transaction=fragmentManager.beginTransaction();
+
+
+        rllt_maninfoshow=View.findViewById(R.id.rllt_maninfoshow);
+        rllt_maninfoshow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(android.view.View v) {
+                Intent intent=new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+        fragmaninfoname=View.findViewById(R.id.frag_maninfo_name);
+        fragmaninfotip=View.findViewById(R.id.frag_maninfo_tip);
+        imag_head= View.findViewById(R.id.imag_head);
+
+
+
 
 
         Button bt_health=(Button)View.findViewById(R.id.bt_top_health_reminder);
@@ -111,6 +134,34 @@ public class fragmentManInfoActivity extends Fragment {
         });
 
         return View;
+    }
+
+
+
+    public void onResume() {
+        super.onResume();
+        Log.i("test999Maninfo","onresume is runing");
+        prefs = getActivity().getSharedPreferences("userlogin", MODE_PRIVATE);
+        String prefsphonenumber=prefs.getString("account","");
+        String prefpassword=prefs.getString("password","");
+        Log.i("test999login","temp"+prefsphonenumber+prefpassword);
+        if(!(prefsphonenumber.equals("")||prefpassword.equals(""))){
+            String prefname=prefs.getString("name","");
+            String prefsex=prefs.getString("sex","");
+            fragmaninfoname.setText(prefname);
+            fragmaninfotip.setText("查看更多信息 >");
+            if(prefsex.equals("女")){
+                imag_head.setImageResource(R.drawable.womanavatar);
+            }
+            else{
+                imag_head.setImageResource(R.drawable.manavatar);
+            }
+        }
+        else{
+            imag_head.setImageResource(R.drawable.userhead);
+            fragmaninfoname.setText("无用户");
+            fragmaninfotip.setText("点击登录");
+        }
     }
 
 //    @Override

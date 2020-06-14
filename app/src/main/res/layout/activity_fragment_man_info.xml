@@ -14,15 +14,64 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_margin="2dp"
         android:layout_weight="3">
 
-        <Button
-            android:id="@+id/bt_top_man_info"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="1dp"
-            android:text="老人信息"/>
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="25dp"
+            android:background="#FFCA28"
+            android:text="我的信息"
+            />
 
+        <RelativeLayout
+            android:id="@+id/rllt_maninfoshow"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:background="#FFFF8D"
+            >
+        <ImageView
+            android:id="@+id/imag_head"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:clickable="true"
+            android:background="@drawable/userhead"
+            />
+        <TextView
+            android:id="@+id/frag_maninfo_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/imag_head"
+            android:layout_above="@+id/tmp_dingwei"
+            android:layout_marginLeft="10dp"
+            android:textSize="30dp"
+            android:text="无用户"/>
+        <TextView
+            android:id="@+id/tmp_dingwei"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/frag_maninfo_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/imag_head"
+            android:layout_below="@+id/tmp_dingwei"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"
+            android:clickable="true"
+            android:text="点击登录"/>
+
+        </RelativeLayout>
 
     </LinearLayout>
 
