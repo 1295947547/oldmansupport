@@ -3,7 +3,9 @@ package com.example.oldmansupport.Desktop.fragment;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -25,13 +27,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import android.content.SharedPreferences;
 
 import com.example.oldmansupport.R;
+import com.example.oldmansupport.Tools.EmergencyContactActivity;
 import com.example.oldmansupport.li.Map_getPosition;
 import com.example.oldmansupport.maninfo.LoginActivity;
+import com.example.oldmansupport.sms.SMSContentActivity;
 
 import java.util.List;
 
@@ -48,11 +53,13 @@ public class fragmentManInfoActivity extends Fragment {
     TextView fragmaninfoname;
     TextView fragmaninfotip;
     ImageView imag_head;
+    String etcontact;
+
 
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View View = inflater.inflate(R.layout.activity_fragment_man_info, container, false);
         //TextView txt_content = (TextView) View.findViewById(R.id.tvInfo4);
         //txt_content.setText("第一个Fragment");
@@ -75,7 +82,8 @@ public class fragmentManInfoActivity extends Fragment {
         imag_head= View.findViewById(R.id.imag_head);
 
 
-
+        prefs = getActivity().getSharedPreferences("emergencycontact", MODE_PRIVATE);
+        etcontact=prefs.getString("contact","");
 
 
         Button bt_health=(Button)View.findViewById(R.id.bt_top_health_reminder);
@@ -93,6 +101,64 @@ public class fragmentManInfoActivity extends Fragment {
         bt_emergency.setTextSize(25);
         bt_emergency.setCompoundDrawables(null,da_emergencyt,null,null);
 
+
+        bt_emergency.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(android.view.View v) {
+                Intent intent=new Intent(getActivity(), EmergencyContactActivity.class);
+                startActivity(intent);
+
+            }
+        });
+        bt_emergency.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(android.view.View v) {
+
+
+                if (etcontact.isEmpty()){
+                    Toast.makeText(getActivity(),"您还未设置紧急联系人",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
+
+                    builder.setTitle("紧急联系");
+                    builder.setMessage("确认拨打该紧急联系人电话"+etcontact+"?");
+                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            try {
+
+                                Intent intent = new Intent();
+                                intent.setAction(Intent.ACTION_CALL);
+                                intent.setData(Uri.parse("tel:"+etcontact));
+                                startActivity(intent);
+                                sendSMS(etcontact,location,getActivity());
+
+                            }
+                            catch (Exception e) {
+
+                            }
+
+                        }
+                    });
+                    builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    builder.show();
+                }
+
+
+
+
+                return false;
+            }
+        });
+
+
+
         //修改图标的大小
         Button bt_phonefinder=(Button)View.findViewById(R.id.bt_top_click_position);
         Drawable da_phonefinder=getResources().getDrawable(R.drawable.oneclick);
@@ -109,18 +175,7 @@ public class fragmentManInfoActivity extends Fragment {
         bt_fall.setTextSize(25);
         bt_fall.setCompoundDrawables(null,da_fall,null,null);
 
-        //紧急联系功能与按钮绑定
-        Button bt_top_emergency_call=View.findViewById(R.id.bt_top_emergency_call);
-        bt_top_emergency_call.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_CALL);
-                intent.setData(Uri.parse("tel:"+"18166139071"));
-                startActivity(intent);
-                sendSMS("18166139071",location,getActivity());
-            }
-        });
+
 
         //定位功能与按钮绑定
         Button bt_top_click_position=View.findViewById(R.id.bt_top_click_position);

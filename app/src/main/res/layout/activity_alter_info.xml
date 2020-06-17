@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".maninfo.AlterInfoActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#FFFF8D">
+        <ImageView
+            android:id="@+id/maninfoshow_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:background="@drawable/ic_left_back"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_toRightOf="@+id/maninfoshow_back"
+            android:layout_centerVertical="true"
+            android:textSize="30dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:text="修改信息"/>
+
+
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:orientation="vertical">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:orientation="vertical">
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginRight="15dp"
+                android:stretchColumns="0,1,2,3,4"
+                >
+
+                <TableRow>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="3"
+                        android:textSize="@dimen/maninfoshow_tabletextsize"
+                        android:text="        姓名:"/>
+
+                    <EditText
+                        android:id="@+id/et_maninfoshow_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5.5"
+                        android:textSize="@dimen/maninfoshow_tabletextsize" />
+
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="3"
+                        android:textSize="@dimen/maninfoshow_tabletextsize"
+                        android:text="        性别:"/>
+
+                    <Spinner
+                        android:id="@+id/sp_maninfoshow_sex"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5.5"
+                        android:entries="@array/maninfosex" />
+
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="3"
+                        android:textSize="@dimen/maninfoshow_tabletextsize"
+                        android:text="出生年月:"/>
+
+                    <TextView
+                        android:id="@+id/et_maninfoshow_birth"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5.5"
+                        android:textSize="@dimen/maninfoshow_tabletextsize" />
+
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="3"
+                        android:textSize="@dimen/maninfoshow_tabletextsize"
+                        android:text="健康状况:"/>
+
+                    <EditText
+                        android:id="@+id/et_maninfoshow_healthstate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5.5"
+                        android:textSize="@dimen/maninfoshow_tabletextsize" />
+
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="3"
+                        android:textSize="@dimen/maninfoshow_tabletextsize"
+                        android:text="家庭住址:"/>
+
+                    <EditText
+                        android:id="@+id/et_maninfoshow_address"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5.5"
+                        android:textSize="@dimen/maninfoshow_tabletextsize" />
+
+                </TableRow>
+
+            </TableLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+
+
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#FF7F50"
+        android:layout_weight="1.2">
+
+        <Button
+            android:id="@+id/maninfoshow_check"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="确认修改"
+            android:background="@android:color/transparent"
+            android:textSize="40dp"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

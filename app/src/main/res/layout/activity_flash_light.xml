@@ -8,15 +8,19 @@
     android:orientation="vertical"
     tools:context=".Tools.FlashLightActivity">
 
+    <LinearLayout
+        android:id="@+id/llyt_flash_light"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/flashlight_off">
+
     <Button
         android:id="@+id/bt_flashlight_switch"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_height="wrap_content"
-        android:textSize="50dp"
-        android:alpha="0.9"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
         />
-
+    </LinearLayout>
 
 
 

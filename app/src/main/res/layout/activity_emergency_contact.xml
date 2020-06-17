@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fffde7">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="设置紧急联系人电话"
+        android:gravity="center"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        android:layout_above="@+id/et_mobile"
+        android:minHeight="100dp"/>
+    <EditText
+        android:id="@+id/et_mobile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入紧急联系人电话"
+        android:layout_centerInParent="true"
+        android:textSize="30dp"
+        android:minHeight="100dp"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_mobile"
+        android:minHeight="50dp">
+        <Button
+            android:id="@+id/bt_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textSize="25dp"
+            android:layout_weight="1"
+            android:text="取消"/>
+
+        <Button
+            android:id="@+id/bt_save_info"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textSize="25dp"
+            android:layout_weight="1"
+            android:text="保存修改"/>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

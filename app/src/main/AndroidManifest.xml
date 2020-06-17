@@ -30,7 +30,8 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".maninfo.AlterInfoActivity"></activity>
+        <activity android:name=".Tools.EmergencyContactActivity"></activity>
+        <activity android:name=".maninfo.AlterInfoActivity" />
         <activity android:name=".maninfo.ManinfoshowActivity" />
         <activity android:name=".maninfo.RegisterActivity" />
         <activity android:name=".maninfo.LoginActivity" />
@@ -38,6 +39,7 @@
         <activity android:name=".sms.SMSListShowActivity" />
         <activity android:name=".sms.SMSContentActivity" />
         <activity android:name=".weather.WeatherActivity" />
+        <activity android:name=".Tools.FlashLightActivity" />
         <activity android:name=".weather.weather_main" />
         <activity android:name=".MainActivity">
             <intent-filter>
